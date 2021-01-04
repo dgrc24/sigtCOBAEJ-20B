@@ -63,7 +63,7 @@ function FormPsic() {
     const [listCrearCita, setListaCrearCita] = useState([])
 
     const crearCita = () => {
-        Axios.post("http://localhost:3001/citas/crear", {
+        Axios.post("http://localhost:3001/api/users/crearCita", {
             fecha: fecha,
             hora: hora,
             nombre_alumno: nombre_alumno,
@@ -83,13 +83,12 @@ function FormPsic() {
             ])
 
             alert("CREADO EXITOSAMENTE!")
+
         })
     }
     useEffect(() => {
         Axios.get('http://localhost:3001/api/users/getAlumnoInfo').then((response) => {
-
             setListAlumnos(response.data);
-
         })
 
     }, []);
@@ -111,6 +110,7 @@ function FormPsic() {
         setSemestre(document.getElementById('Semestre').value)
         setGrupo(document.getElementById('Grupo').value)
         setNctrl(document.getElementById('nc').value)
+        console.log(listCrearCita);
     }
 
     const classes = styles()

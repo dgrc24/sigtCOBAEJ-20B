@@ -27,4 +27,25 @@ module.exports = {
             }
         );
     },
+    getListServicios: callBack => {
+        pool.query("select * from servicios_financieros", [],
+            (error, results, fields) => {
+                if (error) {
+                    callBack(error);
+                }
+                return callBack(null, results);
+            });
+    },
+    crearCita: (data, callBack) => {
+        pool.query(
+            "insert into citas (fecha,hora,nombre_alumno,semestre,grupo,numCtrl) values(?,?,?,?,?,?)",
+            [data.fecha, data.hora, data.nombre_alumno, data.semestre, data.grupo, data.numCtrl],
+            (error, results, fields) => {
+                if (error) {
+                    callBack(error);
+                }
+                return callBack(null, results)
+            }
+        );
+    }
 }
